@@ -1,0 +1,433 @@
+import svgPaths from "../../imports/svg-h0p38kbi6y";
+import { useState, useEffect, useRef } from 'react';
+import ModificationModal from './ModificationModal';
+
+interface TableRow {
+  id: string;
+  name: string;
+  sector: string;
+  responsible: string | string[];
+  year2023: number;
+  year2024: number;
+  variation: number;
+  description: string;
+  estimation?: boolean;
+}
+
+interface DataTableProps {
+  title: string;
+  description: string;
+  data: TableRow[];
+}
+
+type SortField = 'name' | 'sector' | 'responsible' | 'year2023' | 'year2024' | 'variation';
+type SortOrder = 'asc' | 'desc' | null;
+
+// Color mapping for sectors
+const sectorColors: Record<string, { bg: string; text: string }> = {
+  'Administration publique': { bg: '#92E0D3', text: '#2B4A44' },
+  'Éducation': { bg: '#C0C4ED', text: '#3A3C5A' },
+  'Santé': { bg: '#C0DFED', text: '#3A4A5A' },
+  'Défense': { bg: '#C0EDCA', text: '#3A5A44' },
+  'Transports': { bg: '#C0EDEA', text: '#3A5A58' },
+  'Protection sociale': { bg: '#EDE7C0', text: '#555033' },
+  'Sécurité': { bg: '#E9C0ED', text: '#573A5A' },
+  'Fiscalité directe': { bg: '#EDC0C1', text: '#5A3A3B' },
+  'Fiscalité indirecte': { bg: '#EDC0DE', text: '#5A3A4E' },
+  'Fiscalité locale': { bg: '#EDC4C0', text: '#5A3E3A' },
+  'Dette publique': { bg: '#EDD3C0', text: '#5A4A3A' },
+  'protection sociale': { bg: '#EDE7C0', text: '#555033' },
+  'cotisations sociales': { bg: '#C0E3ED', text: '#3A4A55' },
+  'CSG et CRDS': { bg: '#EDC0EA', text: '#5A3A58' },
+  'TVA': { bg: '#C0EDAD', text: '#3A5A48' },
+  'impôts directs': { bg: '#EDC9C0', text: '#5A473A' },
+  'impôts indirects': { bg: '#E0C0ED', text: '#503A5A' },
+  'taxe foncière': { bg: '#EDCBC0', text: '#5A483A' },
+  'dette par entité': { bg: '#EDD3C0', text: '#5A4A3A' },
+  'déficit annuel': { bg: '#EDC0C5', text: '#5A3A3E' },
+  'détenteurs dette État': { bg: '#C0D4ED', text: '#3A445A' },
+};
+
+// Color mapping for responsibles (tags)
+const responsibleColors: Record<string, { bg: string; text: string }> = {
+  'État': { bg: '#666DEA', text: '#FFFFFF' },
+  'Sécurité sociale': { bg: '#EA9218', text: '#FFFFFF' },
+  'Collectivités': { bg: '#E24430', text: '#FFFFFF' },
+  'ODAC': { bg: '#92E0D3', text: '#2B4A44' },
+  'ODAL': { bg: '#C0C4ED', text: '#3A3C5A' },
+  'CADES': { bg: '#E9C0ED', text: '#573A5A' },
+  'ASSO': { bg: '#C0EDCA', text: '#3A5A44' },
+  'Investisseurs étrangers': { bg: '#EDC0C1', text: '#5A3A3B' },
+  'Assurance-vie': { bg: '#C0EDEA', text: '#3A5A58' },
+  'Établissements de crédit': { bg: '#EDC4C0', text: '#5A3E3A' },
+  'Fonds d\'investissement': { bg: '#EDE7C0', text: '#555033' },
+  'Banques centrales': { bg: '#C0DFED', text: '#3A4A5A' },
+  'DGFiP': { bg: '#C0EDAD', text: '#3A5A48' },
+  'URSSAF': { bg: '#EDC9C0', text: '#5A473A' },
+};
+
+export default function EnhancedDataTable({ title, description, data }: DataTableProps) {
+  const [sortField, setSortField] = useState<SortField | null>(null);
+  const [sortOrder, setSortOrder] = useState<SortOrder>(null);
+  const [hoveredRow, setHoveredRow] = useState<string | null>(null);
+  const [showMenu, setShowMenu] = useState<string | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedRow, setSelectedRow] = useState<TableRow | null>(null);
+
+  const handleSort = (field: SortField) => {
+    if (sortField === field) {
+      if (sortOrder === 'asc') {
+        setSortOrder('desc');
+      } else if (sortOrder === 'desc') {
+        setSortField(null);
+        setSortOrder(null);
+      }
+    } else {
+      setSortField(field);
+      setSortOrder('asc');
+    }
+  };
+
+  const sortedData = [...data].sort((a, b) => {
+    if (!sortField || !sortOrder) return 0;
+
+    let aValue: string | number = a[sortField];
+    let bValue: string | number = b[sortField];
+
+    if (typeof aValue === 'string' && typeof bValue === 'string') {
+      return sortOrder === 'asc' 
+        ? aValue.localeCompare(bValue)
+        : bValue.localeCompare(aValue);
+    }
+
+    if (typeof aValue === 'number' && typeof bValue === 'number') {
+      return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
+    }
+
+    return 0;
+  });
+
+  const Arrow = ({ isActive }: { isActive?: boolean }) => (
+    <div className={`relative shrink-0 size-[16px] transition-opacity ${isActive ? 'opacity-100' : 'opacity-40'}`}>
+      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g>
+          <path d={svgPaths.p41f2880} fill={isActive ? "var(--stroke-0, #0A0A0A)" : "var(--stroke-0, #8E8E8E)"} />
+          <path d={svgPaths.p29f68280} fill={isActive ? "var(--stroke-0, #0A0A0A)" : "var(--stroke-0, #8E8E8E)"} />
+        </g>
+      </svg>
+    </div>
+  );
+
+  const Ellipsis = () => (
+    <div className="relative shrink-0 size-[16px]">
+      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g>
+          <path d={svgPaths.p36e45a00} stroke="var(--stroke-0, #0A0A0A)" strokeLinecap="round" strokeLinejoin="round" />
+          <path d={svgPaths.p1a14b300} stroke="var(--stroke-0, #0A0A0A)" strokeLinecap="round" strokeLinejoin="round" />
+          <path d={svgPaths.p2295f880} stroke="var(--stroke-0, #0A0A0A)" strokeLinecap="round" strokeLinejoin="round" />
+        </g>
+      </svg>
+    </div>
+  );
+
+  const Questionmark = () => (
+    <div className="relative shrink-0 size-[16px]">
+      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g clipPath="url(#clip0_1_24)">
+          <path d={svgPaths.p39ee6532} stroke="var(--stroke-0, #626262)" strokeLinecap="round" strokeLinejoin="round" />
+          <path d={svgPaths.p1957b0e0} stroke="var(--stroke-0, #626262)" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M8.00007 11.3333H8.006" stroke="var(--stroke-0, #626262)" strokeLinecap="round" strokeLinejoin="round" />
+        </g>
+        <defs>
+          <clipPath id="clip0_1_24">
+            <rect fill="white" height="16" width="16" />
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
+  );
+
+  const total2023 = data.reduce((sum, row) => sum + row.year2023, 0);
+  const total2024 = data.reduce((sum, row) => sum + row.year2024, 0);
+  const totalVariation = total2024 - total2023;
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('[data-menu-container]')) {
+        setShowMenu(null);
+      }
+    };
+
+    if (showMenu) {
+      document.addEventListener('click', handleClickOutside);
+      return () => document.removeEventListener('click', handleClickOutside);
+    }
+  }, [showMenu]);
+
+  return (
+    <>
+      <div className="w-full max-w-[1200px]">
+        {/* Summary Card */}
+        <div className="content-stretch flex items-center p-[16px] relative rounded-[8px] shrink-0 w-full mb-[16px]">
+          <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px]" />
+          <div className="basis-0 content-stretch flex flex-col gap-[6px] grow items-start min-h-px min-w-px relative shrink-0">
+            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
+              {title}
+            </p>
+            <div className="content-stretch flex items-center justify-center relative shrink-0 w-full">
+              <p className="font-['Inter:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[14px] text-black w-full">
+                {description}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Notes */}
+        <div className="content-stretch flex flex-col font-['Roboto:Regular',sans-serif] font-normal gap-[4px] items-start leading-[normal] relative shrink-0 text-[#808080] text-[14px] w-full mb-[16px]" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="relative shrink-0 w-full">* Sommes en milliards d'euros</p>
+          <p className="relative shrink-0 w-full">** Les blocs grisés sont des estimations</p>
+        </div>
+
+        {/* Table */}
+        <div className="bg-white content-stretch flex flex-col items-start relative rounded-[8px] shrink-0 w-full overflow-hidden">
+          <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px]" />
+          
+          {/* Header */}
+          <div className="content-stretch flex items-start relative shrink-0 w-full border-b border-[#e5e5e5]">
+            <div className="h-[36px] shrink-0 w-[32px]" />
+            
+            <div 
+              onClick={() => handleSort('name')}
+              className="content-stretch flex flex-col h-[36px] items-start justify-center px-[6px] py-0 relative shrink-0 w-[220px] cursor-pointer hover:bg-[#f9f9f9]"
+            >
+              <div className="content-stretch flex gap-[6px] items-center justify-start relative shrink-0">
+                <p className="font-['Inter:Medium',sans-serif] font-medium leading-[18px] not-italic relative shrink-0 text-[#0a0a0a] text-[13px] text-nowrap">
+                  Nom
+                </p>
+                <Arrow isActive={sortField === 'name'} />
+              </div>
+            </div>
+            
+            <div 
+              onClick={() => handleSort('sector')}
+              className="content-stretch flex flex-col h-[36px] items-start justify-center px-[6px] py-0 relative shrink-0 w-[180px] cursor-pointer hover:bg-[#f9f9f9]"
+            >
+              <div className="content-stretch flex gap-[6px] items-center justify-start relative shrink-0">
+                <p className="font-['Inter:Medium',sans-serif] font-medium leading-[18px] not-italic relative shrink-0 text-[#0a0a0a] text-[13px] text-nowrap">
+                  Secteur
+                </p>
+                <Arrow isActive={sortField === 'sector'} />
+              </div>
+            </div>
+            
+            <div
+              onClick={() => handleSort('responsible')}
+              className="content-stretch flex flex-col h-[36px] items-start justify-center px-[6px] py-0 relative shrink-0 w-[180px] cursor-pointer hover:bg-[#f9f9f9]"
+            >
+              <div className="content-stretch flex gap-[6px] items-center justify-start relative shrink-0">
+                <p className="font-['Inter:Medium',sans-serif] font-medium leading-[18px] not-italic relative shrink-0 text-[#0a0a0a] text-[13px] text-nowrap">
+                  Responsable
+                </p>
+                <Arrow isActive={sortField === 'responsible'} />
+              </div>
+            </div>
+            
+            <div 
+              onClick={() => handleSort('year2023')}
+              className="content-stretch flex flex-col h-[36px] items-start justify-center px-[6px] py-0 relative shrink-0 w-[120px] cursor-pointer hover:bg-[#f9f9f9]"
+            >
+              <div className="content-stretch flex gap-[6px] items-center justify-start relative shrink-0">
+                <p className="font-['Inter:Medium',sans-serif] font-medium leading-[18px] not-italic relative shrink-0 text-[#0a0a0a] text-[13px] text-nowrap">
+                  2023
+                </p>
+                <Arrow isActive={sortField === 'year2023'} />
+              </div>
+            </div>
+            
+            <div 
+              onClick={() => handleSort('year2024')}
+              className="content-stretch flex flex-col h-[36px] items-start justify-center px-[6px] py-0 relative shrink-0 w-[120px] cursor-pointer hover:bg-[#f9f9f9]"
+            >
+              <div className="content-stretch flex gap-[6px] items-center justify-start relative shrink-0">
+                <p className="font-['Inter:Medium',sans-serif] font-medium leading-[18px] not-italic relative shrink-0 text-[#0a0a0a] text-[13px] text-nowrap">
+                  2024
+                </p>
+                <Arrow isActive={sortField === 'year2024'} />
+              </div>
+            </div>
+            
+            <div 
+              onClick={() => handleSort('variation')}
+              className="content-stretch flex flex-col h-[36px] items-start justify-center px-[6px] py-0 relative shrink-0 w-[100px] cursor-pointer hover:bg-[#f9f9f9]"
+            >
+              <div className="content-stretch flex gap-[6px] items-center justify-start relative shrink-0">
+                <p className="font-['Inter:Medium',sans-serif] font-medium leading-[18px] not-italic relative shrink-0 text-[#0a0a0a] text-[13px] text-nowrap">
+                  Variation
+                </p>
+                <Arrow isActive={sortField === 'variation'} />
+              </div>
+            </div>
+            
+            <div className="basis-0 grow h-[36px] min-h-px min-w-px relative shrink-0" />
+          </div>
+
+          {/* Rows */}
+          {sortedData.map((row, index) => (
+            <div
+              key={row.id}
+              className={`content-stretch flex items-center min-h-[44px] relative shrink-0 w-full border-b border-[#e5e5e5] ${
+                row.estimation ? 'bg-[#f2f2f2]' : (index % 2 === 1 ? 'bg-[#f9f9f9]' : '')
+              }`}
+            >
+              {/* Question Mark with Tooltip */}
+              <div 
+                className="content-stretch flex h-[44px] items-center justify-center relative shrink-0 w-[32px] group cursor-help"
+                onMouseEnter={() => setHoveredRow(row.id)}
+                onMouseLeave={() => setHoveredRow(null)}
+              >
+                <Questionmark />
+                
+                {/* Tooltip */}
+                {hoveredRow === row.id && (
+                  <div className="absolute left-[40px] top-1/2 -translate-y-1/2 bg-white border border-[#e5e5e5] rounded-[8px] p-[12px] shadow-lg z-50 w-[280px]">
+                    <p className="font-['Inter:Regular',sans-serif] text-[13px] text-[#0a0a0a] leading-[18px]">
+                      {row.description}
+                    </p>
+                  </div>
+                )}
+              </div>
+              
+              <div className="content-stretch flex flex-col items-start justify-center min-h-[44px] px-[6px] py-[6px] relative shrink-0 w-[220px]">
+                <p className="font-['Inter:Regular',sans-serif] font-normal leading-[18px] not-italic text-[#0a0a0a] text-[13px]">
+                  {row.name}
+                </p>
+              </div>
+              
+              <div className="content-stretch flex flex-col h-[44px] items-start justify-center px-[6px] py-[6px] relative shrink-0 w-[180px]">
+                <div 
+                  className="content-stretch flex items-center justify-center px-[6px] py-[2px] relative rounded-[4px] shrink-0"
+                  style={{ 
+                    backgroundColor: sectorColors[row.sector]?.bg || '#ede7c0',
+                  }}
+                >
+                  <p 
+                    className="font-['Inter:Regular',sans-serif] font-normal leading-[18px] not-italic relative shrink-0 text-[13px] text-nowrap"
+                    style={{ 
+                      color: sectorColors[row.sector]?.text || '#555033'
+                    }}
+                  >
+                    {row.sector}
+                  </p>
+                </div>
+              </div>
+              
+              <div className="content-stretch flex flex-wrap gap-[4px] min-h-[44px] items-center px-[6px] py-[6px] relative shrink-0 w-[180px]">
+                {Array.isArray(row.responsible) ? (
+                  row.responsible.map((resp, idx) => (
+                    <div
+                      key={idx}
+                      className="content-stretch flex items-center justify-center px-[6px] py-[2px] relative rounded-[4px] shrink-0"
+                      style={{
+                        backgroundColor: responsibleColors[resp]?.bg || '#ede7c0',
+                      }}
+                    >
+                      <p
+                        className="font-['Inter:Regular',sans-serif] font-normal leading-[18px] not-italic relative shrink-0 text-[13px] text-nowrap"
+                        style={{
+                          color: responsibleColors[resp]?.text || '#555033'
+                        }}
+                      >
+                        {resp}
+                      </p>
+                    </div>
+                  ))
+                ) : (
+                  <div
+                    className="content-stretch flex items-center justify-center px-[6px] py-[2px] relative rounded-[4px] shrink-0"
+                    style={{
+                      backgroundColor: responsibleColors[row.responsible]?.bg || '#ede7c0',
+                    }}
+                  >
+                    <p
+                      className="font-['Inter:Regular',sans-serif] font-normal leading-[18px] not-italic relative shrink-0 text-[13px] text-nowrap"
+                      style={{
+                        color: responsibleColors[row.responsible]?.text || '#555033'
+                      }}
+                    >
+                      {row.responsible}
+                    </p>
+                  </div>
+                )}
+              </div>
+              
+              <div className="content-stretch flex flex-col h-[44px] items-start justify-center px-[6px] py-[6px] relative shrink-0 w-[120px]">
+                <p className="font-['Inter:Regular',sans-serif] font-normal leading-[18px] not-italic text-[#0a0a0a] text-[13px] text-nowrap">
+                  {row.year2023}
+                </p>
+              </div>
+              
+              <div className="content-stretch flex flex-col h-[44px] items-start justify-center px-[6px] py-[6px] relative shrink-0 w-[120px]">
+                <p className="font-['Inter:Regular',sans-serif] font-normal leading-[18px] not-italic text-[#0a0a0a] text-[13px] text-nowrap">
+                  {row.year2024}
+                </p>
+              </div>
+              
+              <div className="content-stretch flex flex-col h-[44px] items-start justify-center px-[6px] py-[6px] relative shrink-0 w-[100px]">
+                <p className={`font-['Inter:Regular',sans-serif] font-normal leading-[18px] not-italic text-[13px] text-nowrap ${
+                  row.variation > 0 ? 'text-[#e24430]' : row.variation < 0 ? 'text-[#666dea]' : 'text-[#0a0a0a]'
+                }`}>
+                  {row.variation > 0 ? '+' : ''}{row.variation}
+                </p>
+              </div>
+              
+              <div className="basis-0 grow h-[44px] min-h-px min-w-px relative shrink-0 flex items-center justify-end pr-[8px]">
+                <div className="relative" data-menu-container>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowMenu(showMenu === row.id ? null : row.id);
+                    }}
+                    className="content-stretch flex items-center justify-center relative shrink-0 size-[28px] hover:bg-[#f5f5f5] rounded-[4px] transition-colors"
+                  >
+                    <Ellipsis />
+                  </button>
+                  
+                  {/* Dropdown Menu */}
+                  {showMenu === row.id && (
+                    <div className="absolute right-0 top-[32px] bg-white border border-[#e5e5e5] rounded-[8px] shadow-lg z-50 min-w-[200px] overflow-hidden">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedRow(row);
+                          setModalOpen(true);
+                          setShowMenu(null);
+                        }}
+                        className="w-full text-left px-[12px] py-[8px] hover:bg-[#f5f5f5] font-['Inter:Regular',sans-serif] text-[13px] text-[#0a0a0a] transition-colors"
+                      >
+                        Demander une modification
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Modal */}
+      {selectedRow && (
+        <ModificationModal
+          isOpen={modalOpen}
+          onClose={() => {
+            setModalOpen(false);
+            setSelectedRow(null);
+          }}
+          rowName={selectedRow.name}
+        />
+      )}
+    </>
+  );
+}

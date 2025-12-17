@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev:*)",
+      "Bash(timeout 5 echo:*)",
+      "Bash(node test-supabase.js:*)",
+      "Bash(node test-supabase-detailed.js:*)",
+      "Bash(node test-supabase-simple.js:*)",
+      "Bash(node check-rls.js:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)"
+    ]
+  }
+}
