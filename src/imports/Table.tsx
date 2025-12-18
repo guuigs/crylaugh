@@ -40,7 +40,7 @@ type TextText4Props = {
 function TextText4({ text }: TextText4Props) {
   return (
     <div className="content-stretch flex items-center relative shrink-0 w-full">
-      <p className="font-['Inter:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">{text}</p>
+      <p className="font-['Geist:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">{text}</p>
     </div>
   );
 }
@@ -51,7 +51,7 @@ type TextText3Props = {
 function TextText3({ text }: TextText3Props) {
   return (
     <div className="bg-[#ede7c0] content-stretch flex items-center justify-center p-[4px] relative rounded-[4px] shrink-0">
-      <p className="font-['Inter:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[#555033] text-[14px] text-nowrap">{text}</p>
+      <p className="font-['Geist:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[#555033] text-[14px] text-nowrap">{text}</p>
     </div>
   );
 }
@@ -62,7 +62,7 @@ type TextText2Props = {
 function TextText2({ text }: TextText2Props) {
   return (
     <div className="content-stretch flex items-center relative shrink-0 w-full">
-      <p className="font-['Inter:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] w-[234px]">{text}</p>
+      <p className="font-['Geist:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] w-[234px]">{text}</p>
     </div>
   );
 }
@@ -90,7 +90,7 @@ type TextText1Props = {
 function TextText1({ text }: TextText1Props) {
   return (
     <div className="content-stretch flex items-center justify-center relative shrink-0">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">{text}</p>
+      <p className="font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">{text}</p>
     </div>
   );
 }
@@ -101,7 +101,7 @@ type TextTextProps = {
 function TextText({ text }: TextTextProps) {
   return (
     <div className="content-stretch flex gap-[10px] items-center justify-center relative shrink-0">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">{text}</p>
+      <p className="font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">{text}</p>
       <Arrow />
     </div>
   );
@@ -272,7 +272,7 @@ function TableHeader12() {
 
 function Text() {
   return (
-    <div className="content-stretch flex font-['Inter:Regular',sans-serif] font-normal items-center leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap w-full" data-name="Text">
+    <div className="content-stretch flex font-['Geist:Regular',sans-serif] font-normal items-center leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap w-full" data-name="Text">
       <p className="relative shrink-0">+</p>
       <p className="relative shrink-0">316</p>
     </div>
@@ -362,7 +362,7 @@ function TableHeader20() {
 
 function Text1() {
   return (
-    <div className="content-stretch flex font-['Inter:Regular',sans-serif] font-normal items-center leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap w-full" data-name="Text">
+    <div className="content-stretch flex font-['Geist:Regular',sans-serif] font-normal items-center leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap w-full" data-name="Text">
       <p className="relative shrink-0">+</p>
       <p className="relative shrink-0">316</p>
     </div>
@@ -452,7 +452,7 @@ function TableHeader27() {
 
 function Text2() {
   return (
-    <div className="content-stretch flex font-['Inter:Regular',sans-serif] font-normal items-center leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap w-full" data-name="Text">
+    <div className="content-stretch flex font-['Geist:Regular',sans-serif] font-normal items-center leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap w-full" data-name="Text">
       <p className="relative shrink-0">+</p>
       <p className="relative shrink-0">316</p>
     </div>

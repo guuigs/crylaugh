@@ -7,7 +7,7 @@ type MonthTextProps = {
 function MonthText({ text }: MonthTextProps) {
   return (
     <div className="content-stretch flex items-center justify-center relative shrink-0">
-      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#737373] text-[12px] text-nowrap">
+      <div className="flex flex-col font-['Geist:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#737373] text-[12px] text-nowrap">
         <p className="leading-[16px]">{text}</p>
       </div>
     </div>
@@ -35,7 +35,7 @@ type TextText1Props = {
 function TextText1({ text }: TextText1Props) {
   return (
     <div className="content-stretch flex items-center justify-center relative shrink-0">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">{text}</p>
+      <p className="font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">{text}</p>
     </div>
   );
 }
@@ -46,7 +46,7 @@ type TextTextProps = {
 function TextText({ text }: TextTextProps) {
   return (
     <div className="content-stretch flex items-center justify-center relative shrink-0">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#8e8e8e] text-[14px] text-nowrap">{text}</p>
+      <p className="font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#8e8e8e] text-[14px] text-nowrap">{text}</p>
     </div>
   );
 }
@@ -54,7 +54,7 @@ function TextText({ text }: TextTextProps) {
 function Text() {
   return (
     <div className="content-stretch flex items-center justify-center relative shrink-0" data-name="Text">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-black text-nowrap">Résumé</p>
+      <p className="font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-black text-nowrap">Résumé</p>
     </div>
   );
 }
@@ -123,7 +123,7 @@ function Menubar() {
 
 function Title() {
   return (
-    <div className="content-stretch flex font-['Inter:Semi_Bold',sans-serif] font-semibold gap-[4px] items-center justify-center leading-[24px] not-italic relative shrink-0 text-[#0a0a0a] text-[16px] text-nowrap" data-name="Title">
+    <div className="content-stretch flex font-['Geist:Semi_Bold',sans-serif] font-semibold gap-[4px] items-center justify-center leading-[24px] not-italic relative shrink-0 text-[#0a0a0a] text-[16px] text-nowrap" data-name="Title">
       <p className="relative shrink-0">3600</p>
       <p className="relative shrink-0">{`milliards d’euros `}</p>
     </div>
@@ -133,7 +133,7 @@ function Title() {
 function Text1() {
   return (
     <div className="content-stretch flex items-center justify-center relative shrink-0" data-name="Text">
-      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#737373] text-[14px] text-nowrap">
+      <div className="flex flex-col font-['Geist:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#737373] text-[14px] text-nowrap">
         <p className="leading-[20px]">Ensemble de la dette française en 2024</p>
       </div>
     </div>
@@ -152,7 +152,7 @@ function Frame2() {
 function Text2() {
   return (
     <div className="content-stretch flex items-center justify-center relative shrink-0" data-name="Text">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#171717] text-[14px] text-nowrap">3 ans</p>
+      <p className="font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#171717] text-[14px] text-nowrap">3 ans</p>
     </div>
   );
 }
@@ -317,7 +317,7 @@ function Title1() {
   return (
     <div className="content-stretch flex gap-[10px] items-center justify-center relative shrink-0" data-name="Title">
       <div className="bg-[#ea9218] rounded-[4px] shrink-0 size-[16px]" />
-      <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[24px] relative shrink-0 text-[#0a0a0a] text-[16px] text-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
+      <p className="font-['Geist:Regular',sans-serif] font-normal leading-[24px] relative shrink-0 text-[#0a0a0a] text-[16px] text-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
         Dette de l’état
       </p>
     </div>
@@ -328,7 +328,7 @@ function Title2() {
   return (
     <div className="content-stretch flex gap-[10px] items-center justify-center relative shrink-0" data-name="Title">
       <div className="bg-[#e24430] rounded-[4px] shrink-0 size-[16px]" />
-      <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[24px] relative shrink-0 text-[#0a0a0a] text-[16px] text-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
+      <p className="font-['Geist:Regular',sans-serif] font-normal leading-[24px] relative shrink-0 text-[#0a0a0a] text-[16px] text-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
         Dépenses publics
       </p>
     </div>
@@ -339,7 +339,7 @@ function Title3() {
   return (
     <div className="content-stretch flex gap-[10px] items-center justify-center relative shrink-0" data-name="Title">
       <div className="bg-[#666dea] rounded-[4px] shrink-0 size-[16px]" />
-      <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[24px] relative shrink-0 text-[#0a0a0a] text-[16px] text-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
+      <p className="font-['Geist:Regular',sans-serif] font-normal leading-[24px] relative shrink-0 text-[#0a0a0a] text-[16px] text-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
         Recettes publiques
       </p>
     </div>
@@ -350,7 +350,7 @@ function Title4() {
   return (
     <div className="content-stretch flex gap-[10px] items-center justify-center relative shrink-0" data-name="Title">
       <div className="bg-[#ff1cce] rounded-[4px] shrink-0 size-[16px]" />
-      <p className="font-['Roboto:Regular',sans-serif] font-normal leading-[24px] relative shrink-0 text-[#0a0a0a] text-[16px] text-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
+      <p className="font-['Geist:Regular',sans-serif] font-normal leading-[24px] relative shrink-0 text-[#0a0a0a] text-[16px] text-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
         PIB
       </p>
     </div>

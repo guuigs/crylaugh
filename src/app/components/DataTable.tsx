@@ -83,11 +83,11 @@ export default function DataTable({ title, description, data }: DataTableProps) 
       <div className="content-stretch flex items-center p-[16px] relative rounded-[8px] shrink-0 w-full mb-[20px]">
         <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px]" />
         <div className="basis-0 content-stretch flex flex-col gap-[8px] grow items-start min-h-px min-w-px relative shrink-0">
-          <p className="font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
+          <p className="font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
             {title}
           </p>
           <div className="content-stretch flex items-center justify-center relative shrink-0 w-full">
-            <p className="font-['Inter:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[14px] text-black w-full">
+            <p className="font-['Geist:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[14px] text-black w-full">
               {description}
             </p>
           </div>
@@ -95,9 +95,9 @@ export default function DataTable({ title, description, data }: DataTableProps) 
       </div>
 
       {/* Footer Notes */}
-      <div className="content-stretch flex flex-col font-['Roboto:Regular',sans-serif] font-normal gap-[6px] items-start leading-[normal] relative shrink-0 text-[#808080] text-[16px] w-full mb-[20px]" style={{ fontVariationSettings: "'wdth' 100" }}>
+      <div className="content-stretch flex flex-col font-['Geist:Regular',sans-serif] font-normal gap-[6px] items-start leading-[normal] relative shrink-0 text-[#808080] text-[16px] w-full mb-[20px]" style={{ fontVariationSettings: "'wdth' 100" }}>
         <p className="relative shrink-0 w-full">* Sommes en milliards d'euros</p>
-        <p className="relative shrink-0 w-full">** Les blocs grisés sont des estimations</p>
+        <p className="relative shrink-0 w-full">** Les blocs grisés sont des estimations non-issus de sources fiables. Je réalise ce trvail seul et peut faire des erreurs. N'hésitez pas à me faire des retours et des demandes de modifications sourcées.</p>
       </div>
 
       {/* Table */}
@@ -110,7 +110,7 @@ export default function DataTable({ title, description, data }: DataTableProps) 
           
           <div className="content-stretch flex flex-col h-[40px] items-start justify-center px-[8px] py-0 relative shrink-0 w-[250px]">
             <div className="content-stretch flex gap-[10px] items-center justify-center relative shrink-0">
-              <p className="font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
+              <p className="font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
                 Nom
               </p>
               <Arrow />
@@ -122,7 +122,7 @@ export default function DataTable({ title, description, data }: DataTableProps) 
             onClick={() => handleSort('sector')}
           >
             <div className="content-stretch flex h-[40px] items-center px-0 py-[8px] relative rounded-[6px] shrink-0 w-[92.99px]">
-              <p className="font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
+              <p className="font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
                 Secteur
               </p>
               <div className="content-stretch flex items-center justify-center pl-[8px] pr-0 py-0 relative shrink-0">
@@ -136,7 +136,7 @@ export default function DataTable({ title, description, data }: DataTableProps) 
             onClick={() => handleSort('responsible')}
           >
             <div className="content-stretch flex h-[40px] items-center px-0 py-[8px] relative rounded-[6px] shrink-0 w-[92.99px]">
-              <p className="font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
+              <p className="font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
                 Responsable
               </p>
               <div className="content-stretch flex items-center justify-center pl-[8px] pr-0 py-0 relative shrink-0">
@@ -147,7 +147,7 @@ export default function DataTable({ title, description, data }: DataTableProps) 
           
           <div className="content-stretch flex flex-col h-[40px] items-start justify-center px-[8px] py-0 relative shrink-0 w-[150px]">
             <div className="content-stretch flex gap-[10px] items-center justify-center relative shrink-0">
-              <p className="font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
+              <p className="font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
                 2023
               </p>
               <Arrow />
@@ -156,7 +156,7 @@ export default function DataTable({ title, description, data }: DataTableProps) 
           
           <div className="content-stretch flex flex-col h-[40px] items-start justify-center px-[8px] py-0 relative shrink-0 w-[150px]">
             <div className="content-stretch flex gap-[10px] items-center justify-center relative shrink-0">
-              <p className="font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
+              <p className="font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
                 2024
               </p>
               <Arrow />
@@ -165,7 +165,7 @@ export default function DataTable({ title, description, data }: DataTableProps) 
           
           <div className="content-stretch flex flex-col h-[40px] items-start justify-center px-[8px] py-0 relative shrink-0 w-[100px]">
             <div className="content-stretch flex gap-[10px] items-center justify-center relative shrink-0">
-              <p className="font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
+              <p className="font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
                 Variation
               </p>
               <Arrow />
@@ -189,7 +189,7 @@ export default function DataTable({ title, description, data }: DataTableProps) 
             
             <div className="content-stretch flex flex-col items-start justify-center min-h-[49px] p-[8px] relative shrink-0 w-[250px]">
               <div className="content-stretch flex items-center relative shrink-0 w-full">
-                <p className="font-['Inter:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] w-[234px]">
+                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] w-[234px]">
                   {row.name}
                 </p>
               </div>
@@ -197,7 +197,7 @@ export default function DataTable({ title, description, data }: DataTableProps) 
             
             <div className="content-stretch flex flex-col h-[49px] items-start justify-center p-[8px] relative shrink-0 w-[250px]">
               <div className="bg-[#ede7c0] content-stretch flex items-center justify-center p-[4px] relative rounded-[4px] shrink-0">
-                <p className="font-['Inter:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[#555033] text-[14px] text-nowrap">
+                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[#555033] text-[14px] text-nowrap">
                   {row.sector}
                 </p>
               </div>
@@ -205,7 +205,7 @@ export default function DataTable({ title, description, data }: DataTableProps) 
             
             <div className="content-stretch flex flex-col h-[49px] items-start justify-center p-[8px] relative shrink-0 w-[180px]">
               <div className="content-stretch flex items-center relative shrink-0 w-full">
-                <p className="font-['Inter:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
+                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
                   {row.responsible}
                 </p>
               </div>
@@ -213,7 +213,7 @@ export default function DataTable({ title, description, data }: DataTableProps) 
             
             <div className="content-stretch flex flex-col h-[49px] items-start justify-center p-[8px] relative shrink-0 w-[150px]">
               <div className="content-stretch flex items-center relative shrink-0 w-full">
-                <p className="font-['Inter:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
+                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
                   {row.year2023}
                 </p>
               </div>
@@ -221,14 +221,14 @@ export default function DataTable({ title, description, data }: DataTableProps) 
             
             <div className="content-stretch flex flex-col h-[49px] items-start justify-center p-[8px] relative shrink-0 w-[150px]">
               <div className="content-stretch flex items-center relative shrink-0 w-full">
-                <p className="font-['Inter:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
+                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
                   {row.year2024}
                 </p>
               </div>
             </div>
             
             <div className="content-stretch flex flex-col h-[49px] items-start justify-center p-[8px] relative shrink-0 w-[100px]">
-              <div className="content-stretch flex font-['Inter:Regular',sans-serif] font-normal items-center leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap w-full">
+              <div className="content-stretch flex font-['Geist:Regular',sans-serif] font-normal items-center leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap w-full">
                 <p className="relative shrink-0">{row.variation > 0 ? '+' : ''}</p>
                 <p className="relative shrink-0">{row.variation}</p>
               </div>

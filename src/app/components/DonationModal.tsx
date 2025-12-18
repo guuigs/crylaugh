@@ -29,10 +29,10 @@ export default function DonationModal({ isOpen, onClose }: DonationModalProps) {
           {/* Header */}
           <div className="flex items-start justify-between mb-[24px]">
             <div>
-              <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[24px] text-[#0a0a0a] leading-[32px] mb-[8px]">
+              <h2 className="font-['Geist:Semi_Bold',sans-serif] font-semibold text-[24px] text-[#0a0a0a] leading-[32px] mb-[8px]">
                 Soutenez ce projet
               </h2>
-              <p className="font-['Inter:Regular',sans-serif] text-[14px] text-[#737373] leading-[20px]">
+              <p className="font-['Geist:Regular',sans-serif] text-[14px] text-[#737373] leading-[20px]">
                 Faites un don en Bitcoin pour soutenir la transparence des données publiques
               </p>
             </div>
@@ -139,7 +139,7 @@ export default function DonationModal({ isOpen, onClose }: DonationModalProps) {
 
           {/* Bitcoin Address */}
           <div className="mb-[24px]">
-            <label className="block font-['Inter:Medium',sans-serif] font-medium text-[14px] text-[#0a0a0a] leading-[20px] mb-[8px]">
+            <label className="block font-['Geist:Medium',sans-serif] font-medium text-[14px] text-[#0a0a0a] leading-[20px] mb-[8px]">
               Adresse Bitcoin
             </label>
             <div className="flex gap-[8px]">
@@ -151,7 +151,7 @@ export default function DonationModal({ isOpen, onClose }: DonationModalProps) {
               />
               <button
                 onClick={copyToClipboard}
-                className="px-[16px] py-[8px] bg-[#0a0a0a] rounded-[8px] font-['Inter:Medium',sans-serif] font-medium text-[14px] text-white hover:bg-[#171717] transition-colors shrink-0"
+                className="px-[16px] py-[8px] bg-[#0a0a0a] rounded-[8px] font-['Geist:Medium',sans-serif] font-medium text-[14px] text-white hover:bg-[#171717] transition-colors shrink-0"
               >
                 Copier
               </button>

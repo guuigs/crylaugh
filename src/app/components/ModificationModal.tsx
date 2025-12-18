@@ -45,10 +45,10 @@ export default function ModificationModal({ isOpen, onClose, rowName }: Modifica
           {/* Header */}
           <div className="flex items-start justify-between mb-[24px]">
             <div>
-              <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[24px] text-[#0a0a0a] leading-[32px] mb-[8px]">
+              <h2 className="font-['Geist:Semi_Bold',sans-serif] font-semibold text-[24px] text-[#0a0a0a] leading-[32px] mb-[8px]">
                 Demander une modification
               </h2>
-              <p className="font-['Inter:Regular',sans-serif] text-[14px] text-[#737373] leading-[20px]">
+              <p className="font-['Geist:Regular',sans-serif] text-[14px] text-[#737373] leading-[20px]">
                 Pour la ligne : <span className="font-medium text-[#0a0a0a]">{rowName}</span>
               </p>
             </div>
@@ -64,7 +64,7 @@ export default function ModificationModal({ isOpen, onClose, rowName }: Modifica
           <form onSubmit={handleSubmit}>
             {/* Email Field */}
             <div className="mb-[20px]">
-              <label className="block font-['Inter:Medium',sans-serif] font-medium text-[14px] text-[#0a0a0a] leading-[20px] mb-[8px]">
+              <label className="block font-['Geist:Medium',sans-serif] font-medium text-[14px] text-[#0a0a0a] leading-[20px] mb-[8px]">
                 Votre email <span className="text-red-500">*</span>
               </label>
               <input
@@ -72,35 +72,35 @@ export default function ModificationModal({ isOpen, onClose, rowName }: Modifica
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-[12px] py-[8px] border border-[#e5e5e5] rounded-[8px] font-['Inter:Regular',sans-serif] text-[14px] focus:outline-none focus:border-[#0a0a0a] transition-colors"
+                className="w-full px-[12px] py-[8px] border border-[#e5e5e5] rounded-[8px] font-['Geist:Regular',sans-serif] text-[14px] focus:outline-none focus:border-[#0a0a0a] transition-colors"
                 placeholder="votre.email@exemple.fr"
               />
             </div>
 
             {/* Explanation Field */}
             <div className="mb-[20px]">
-              <label className="block font-['Inter:Medium',sans-serif] font-medium text-[14px] text-[#0a0a0a] leading-[20px] mb-[8px]">
+              <label className="block font-['Geist:Medium',sans-serif] font-medium text-[14px] text-[#0a0a0a] leading-[20px] mb-[8px]">
                 Explication de la modification <span className="text-red-500">*</span>
               </label>
               <textarea
                 required
                 value={explanation}
                 onChange={(e) => setExplanation(e.target.value)}
-                className="w-full px-[12px] py-[8px] border border-[#e5e5e5] rounded-[8px] font-['Inter:Regular',sans-serif] text-[14px] min-h-[120px] resize-y focus:outline-none focus:border-[#0a0a0a] transition-colors"
+                className="w-full px-[12px] py-[8px] border border-[#e5e5e5] rounded-[8px] font-['Geist:Regular',sans-serif] text-[14px] min-h-[120px] resize-y focus:outline-none focus:border-[#0a0a0a] transition-colors"
                 placeholder="Décrivez en détail la modification que vous souhaitez apporter..."
               />
             </div>
 
             {/* Source Field */}
             <div className="mb-[24px]">
-              <label className="block font-['Inter:Medium',sans-serif] font-medium text-[14px] text-[#0a0a0a] leading-[20px] mb-[8px]">
+              <label className="block font-['Geist:Medium',sans-serif] font-medium text-[14px] text-[#0a0a0a] leading-[20px] mb-[8px]">
                 Source(s) <span className="text-red-500">*</span>
               </label>
               <textarea
                 required
                 value={source}
                 onChange={(e) => setSource(e.target.value)}
-                className="w-full px-[12px] py-[8px] border border-[#e5e5e5] rounded-[8px] font-['Inter:Regular',sans-serif] text-[14px] min-h-[80px] resize-y focus:outline-none focus:border-[#0a0a0a] transition-colors"
+                className="w-full px-[12px] py-[8px] border border-[#e5e5e5] rounded-[8px] font-['Geist:Regular',sans-serif] text-[14px] min-h-[80px] resize-y focus:outline-none focus:border-[#0a0a0a] transition-colors"
                 placeholder="Indiquez les sources qui justifient votre demande (URLs, documents, etc.)"
               />
             </div>
@@ -110,14 +110,14 @@ export default function ModificationModal({ isOpen, onClose, rowName }: Modifica
               <button
                 type="button"
                 onClick={onClose}
-                className="px-[16px] py-[8px] border border-[#e5e5e5] rounded-[8px] font-['Inter:Medium',sans-serif] font-medium text-[14px] text-[#0a0a0a] hover:bg-[#f5f5f5] transition-colors"
+                className="px-[16px] py-[8px] border border-[#e5e5e5] rounded-[8px] font-['Geist:Medium',sans-serif] font-medium text-[14px] text-[#0a0a0a] hover:bg-[#f5f5f5] transition-colors"
               >
                 Annuler
               </button>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-[16px] py-[8px] bg-[#0a0a0a] rounded-[8px] font-['Inter:Medium',sans-serif] font-medium text-[14px] text-white hover:bg-[#171717] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-[16px] py-[8px] bg-[#0a0a0a] rounded-[8px] font-['Geist:Medium',sans-serif] font-medium text-[14px] text-white hover:bg-[#171717] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Envoi...' : 'Envoyer'}
               </button>

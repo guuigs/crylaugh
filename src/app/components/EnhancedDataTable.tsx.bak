@@ -16,7 +16,7 @@ interface TableRow {
 
 interface DataTableProps {
   title: string;
-  description?: string;
+  description: string;
   data: TableRow[];
 }
 
@@ -67,33 +67,12 @@ const responsibleColors: Record<string, { bg: string; text: string }> = {
 };
 
 export default function EnhancedDataTable({ title, description, data }: DataTableProps) {
-  const [sortField, setSortField] = useState<SortField | null>('responsible');
-  const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
+  const [sortField, setSortField] = useState<SortField | null>(null);
+  const [sortOrder, setSortOrder] = useState<SortOrder>(null);
   const [hoveredRow, setHoveredRow] = useState<string | null>(null);
   const [showMenu, setShowMenu] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState<TableRow | null>(null);
-  const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
-
-  const toggleRowSelection = (rowId: string) => {
-    const newSelection = new Set(selectedRows);
-    if (newSelection.has(rowId)) {
-      newSelection.delete(rowId);
-    } else {
-      newSelection.add(rowId);
-    }
-    setSelectedRows(newSelection);
-  };
-
-  const toggleAllRows = () => {
-    if (selectedRows.size === data.length) {
-      // Tout désélectionner
-      setSelectedRows(new Set());
-    } else {
-      // Tout sélectionner
-      setSelectedRows(new Set(data.map(row => row.id)));
-    }
-  };
 
   const handleSort = (field: SortField) => {
     if (sortField === field) {
@@ -112,20 +91,11 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
   const sortedData = [...data].sort((a, b) => {
     if (!sortField || !sortOrder) return 0;
 
-    let aValue: string | number | string[] = a[sortField];
-    let bValue: string | number | string[] = b[sortField];
-
-    // Handle responsible field (can be string or array)
-    if (sortField === 'responsible') {
-      const aStr = Array.isArray(aValue) ? aValue.join(', ') : String(aValue);
-      const bStr = Array.isArray(bValue) ? bValue.join(', ') : String(bValue);
-      return sortOrder === 'asc'
-        ? aStr.localeCompare(bStr)
-        : bStr.localeCompare(aStr);
-    }
+    let aValue: string | number = a[sortField];
+    let bValue: string | number = b[sortField];
 
     if (typeof aValue === 'string' && typeof bValue === 'string') {
-      return sortOrder === 'asc'
+      return sortOrder === 'asc' 
         ? aValue.localeCompare(bValue)
         : bValue.localeCompare(aValue);
     }
@@ -177,14 +147,9 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
     </div>
   );
 
+  const total2023 = data.reduce((sum, row) => sum + row.year2023, 0);
   const total2024 = data.reduce((sum, row) => sum + row.year2024, 0);
-
-  // Calculate selected rows totals
-  const selectedTotal2024 = Array.from(selectedRows).reduce((sum, rowId) => {
-    const row = data.find(r => r.id === rowId);
-    return sum + (row?.year2024 || 0);
-  }, 0);
-  const selectedPercentage = total2024 > 0 ? (selectedTotal2024 / total2024) * 100 : 0;
+  const totalVariation = total2024 - total2023;
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -211,13 +176,11 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
             <p className="font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
               {title}
             </p>
-            {description && (
-              <div className="content-stretch flex items-center justify-center relative shrink-0 w-full">
-                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[14px] text-black w-full">
-                  {description}
-                </p>
-              </div>
-            )}
+            <div className="content-stretch flex items-center justify-center relative shrink-0 w-full">
+              <p className="font-['Geist:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[14px] text-black w-full">
+                {description}
+              </p>
+            </div>
           </div>
         </div>
 
@@ -227,32 +190,12 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
           <p className="relative shrink-0 w-full">** Les blocs grisés sont des estimations</p>
         </div>
 
-        {/* Selection Summary */}
-        {selectedRows.size > 0 && (
-          <div className="bg-[#f5f5f5] border border-[#e5e5e5] rounded-[8px] p-[10px] mb-[12px] flex items-center gap-[16px]">
-            <p className="font-['Geist:Medium',sans-serif] text-[13px] text-[#0a0a0a]">
-              Total sélectionné (2024): <span className="font-semibold">{selectedTotal2024.toFixed(1)} Md€</span>
-            </p>
-            <p className="font-['Geist:Regular',sans-serif] text-[13px] text-[#626262]">
-              ({selectedPercentage.toFixed(1)}% du total)
-            </p>
-          </div>
-        )}
-
         {/* Table */}
         <div className="bg-white content-stretch flex flex-col items-start relative rounded-[8px] shrink-0 w-full overflow-hidden">
           <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px]" />
           
           {/* Header */}
           <div className="content-stretch flex items-start relative shrink-0 w-full border-b border-[#e5e5e5]">
-            <div className="content-stretch flex h-[36px] items-center justify-center relative shrink-0 w-[40px]">
-              <input
-                type="checkbox"
-                checked={selectedRows.size === data.length && data.length > 0}
-                onChange={toggleAllRows}
-                className="w-[16px] h-[16px] cursor-pointer"
-              />
-            </div>
             <div className="h-[36px] shrink-0 w-[32px]" />
             
             <div 
@@ -338,38 +281,24 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
                 row.estimation ? 'bg-[#f2f2f2]' : (index % 2 === 1 ? 'bg-[#f9f9f9]' : '')
               }`}
             >
-              {/* Checkbox */}
-              <div className="content-stretch flex h-[44px] items-center justify-center relative shrink-0 w-[40px]">
-                <input
-                  type="checkbox"
-                  checked={selectedRows.has(row.id)}
-                  onChange={() => toggleRowSelection(row.id)}
-                  className="w-[16px] h-[16px] cursor-pointer"
-                />
-              </div>
-
               {/* Question Mark with Tooltip */}
-              {row.description ? (
-                <div
-                  className="content-stretch flex h-[44px] items-center justify-center relative shrink-0 w-[32px] group cursor-help"
-                  onMouseEnter={() => setHoveredRow(row.id)}
-                  onMouseLeave={() => setHoveredRow(null)}
-                >
-                  <Questionmark />
-
-                  {/* Tooltip */}
-                  {hoveredRow === row.id && (
-                    <div className="absolute left-[40px] top-1/2 -translate-y-1/2 bg-white border border-[#e5e5e5] rounded-[8px] p-[12px] shadow-lg z-50 w-[280px]">
-                      <p className="font-['Geist:Regular',sans-serif] text-[13px] text-[#0a0a0a] leading-[18px]">
-                        {row.description}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <div className="h-[44px] shrink-0 w-[32px]" />
-              )}
-
+              <div 
+                className="content-stretch flex h-[44px] items-center justify-center relative shrink-0 w-[32px] group cursor-help"
+                onMouseEnter={() => setHoveredRow(row.id)}
+                onMouseLeave={() => setHoveredRow(null)}
+              >
+                <Questionmark />
+                
+                {/* Tooltip */}
+                {hoveredRow === row.id && (
+                  <div className="absolute left-[40px] top-1/2 -translate-y-1/2 bg-white border border-[#e5e5e5] rounded-[8px] p-[12px] shadow-lg z-50 w-[280px]">
+                    <p className="font-['Geist:Regular',sans-serif] text-[13px] text-[#0a0a0a] leading-[18px]">
+                      {row.description}
+                    </p>
+                  </div>
+                )}
+              </div>
+              
               <div className="content-stretch flex flex-col items-start justify-center min-h-[44px] px-[6px] py-[6px] relative shrink-0 w-[220px]">
                 <p className="font-['Geist:Regular',sans-serif] font-normal leading-[18px] not-italic text-[#0a0a0a] text-[13px]">
                   {row.name}

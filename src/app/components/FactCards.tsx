@@ -99,7 +99,7 @@ export default function FactCards() {
   if (loading) {
     return (
       <div className="w-full max-w-[600px] mx-auto text-center">
-        <p className="font-['Inter:Regular',sans-serif] text-[14px] text-[#737373]">
+        <p className="font-['Geist:Regular',sans-serif] text-[14px] text-[#737373]">
           Chargement des anecdotes...
         </p>
       </div>
@@ -146,7 +146,7 @@ export default function FactCards() {
     <div className="w-full max-w-[600px] mx-auto">
       {/* Disclaimer */}
       <div className="text-center mb-[32px]">
-        <p className="font-['Inter:Regular',sans-serif] text-[14px] text-[#737373] italic">
+        <p className="font-['Geist:Regular',sans-serif] text-[14px] text-[#737373] italic">
           malheureusement, tout est vrai...
         </p>
       </div>
@@ -168,7 +168,7 @@ export default function FactCards() {
           onTouchEnd={handleDragEnd}
         >
           <div className="text-center">
-            <p className="font-['Inter:Medium',sans-serif] font-medium text-[22px] leading-[36px] text-[#0a0a0a]">
+            <p className="font-['Geist:Medium',sans-serif] font-medium text-[22px] leading-[36px] text-[#0a0a0a]">
               {currentCard.anecdote}
             </p>
           </div>
@@ -189,7 +189,7 @@ export default function FactCards() {
 
       {/* Subtle hint */}
       <div className="text-center mt-[32px]">
-        <p className="font-['Inter:Regular',sans-serif] text-[12px] text-[#a3a3a3]">
+        <p className="font-['Geist:Regular',sans-serif] text-[12px] text-[#a3a3a3]">
           Glissez la carte à gauche ou à droite
         </p>
       </div>

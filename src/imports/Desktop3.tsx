@@ -39,7 +39,7 @@ type TextText1Props = {
 function TextText1({ text }: TextText1Props) {
   return (
     <div className="content-stretch flex items-center justify-center relative shrink-0">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">{text}</p>
+      <p className="font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">{text}</p>
     </div>
   );
 }
@@ -51,8 +51,8 @@ type ComponentDescriptionProps = {
 function ComponentDescription({ text, text1 }: ComponentDescriptionProps) {
   return (
     <div className="basis-0 content-stretch flex flex-col gap-[8px] grow items-start min-h-px min-w-px not-italic relative shrink-0">
-      <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[40px] relative shrink-0 text-[#0a0a0a] text-[36px] w-full">{text}</p>
-      <p className="font-['Inter:Regular',sans-serif] font-normal leading-[24px] relative shrink-0 text-[#737373] text-[16px] w-full">{text1}</p>
+      <p className="font-['Geist:Semi_Bold',sans-serif] font-semibold leading-[40px] relative shrink-0 text-[#0a0a0a] text-[36px] w-full">{text}</p>
+      <p className="font-['Geist:Regular',sans-serif] font-normal leading-[24px] relative shrink-0 text-[#737373] text-[16px] w-full">{text1}</p>
     </div>
   );
 }
@@ -63,7 +63,7 @@ type TextTextProps = {
 function TextText({ text }: TextTextProps) {
   return (
     <div className="content-stretch flex items-center justify-center relative shrink-0">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#8e8e8e] text-[14px] text-nowrap">{text}</p>
+      <p className="font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#8e8e8e] text-[14px] text-nowrap">{text}</p>
     </div>
   );
 }
@@ -111,7 +111,7 @@ function Wrapper3() {
 function Text() {
   return (
     <div className="content-stretch flex items-center justify-center relative shrink-0" data-name="Text">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-black text-nowrap">Sources</p>
+      <p className="font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-black text-nowrap">Sources</p>
     </div>
   );
 }

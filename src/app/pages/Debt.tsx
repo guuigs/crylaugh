@@ -134,7 +134,7 @@ export default function Debt() {
   if (loading) {
     return (
       <div className="content-stretch flex flex-col items-start relative shrink-0 w-full mt-[10px]">
-        <p className="font-['Inter:Regular',sans-serif] text-[14px] text-[#737373]">
+        <p className="font-['Geist:Regular',sans-serif] text-[14px] text-[#737373]">
           Chargement des données...
         </p>
       </div>
@@ -142,25 +142,22 @@ export default function Debt() {
   }
 
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full mt-[10px] gap-[20px]">
+    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full mt-[10px] gap-[60px]">
       {/* Tableau Dette */}
       <DataTable
-        title="Dette totale"
-        description={`En 2024, la dette publique totale de la France s'élève à ${totalDette2024} milliards d'euros.`}
+        title="En 2024, la dette publique totale de la France s'élève à 3303 milliards d'euros."
         data={detteData}
       />
 
       {/* Tableau Déficit */}
       <DataTable
         title="Déficit annuel"
-        description={`En 2024, le déficit public total s'élève à ${totalDeficit2024} milliards d'euros.`}
         data={deficitData}
       />
 
       {/* Tableau Détenteurs */}
       <DataTable
         title="Détenteurs de la dette de l'État"
-        description="Répartition des détenteurs de la dette publique française en 2024."
         data={detenteurData}
       />
     </div>

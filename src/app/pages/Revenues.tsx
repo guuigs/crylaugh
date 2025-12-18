@@ -66,7 +66,7 @@ export default function Revenues() {
   if (loading) {
     return (
       <div className="content-stretch flex flex-col items-start relative shrink-0 w-full mt-[10px]">
-        <p className="font-['Inter:Regular',sans-serif] text-[14px] text-[#737373]">
+        <p className="font-['Geist:Regular',sans-serif] text-[14px] text-[#737373]">
           Chargement des recettes...
         </p>
       </div>
@@ -76,8 +76,7 @@ export default function Revenues() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full mt-[10px]">
       <DataTable
-        title="Total"
-        description={`En 2024, l'ensemble des institutions publiques en France ont collecté ${total2024} milliards d'euros de recettes.`}
+        title="En 2024, l'ensemble des institutions publiques en France ont collecté 1501.6 milliards d'euros de recettes."
         data={revenuesData}
       />
     </div>

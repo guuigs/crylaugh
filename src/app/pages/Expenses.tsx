@@ -66,7 +66,7 @@ export default function Expenses() {
   if (loading) {
     return (
       <div className="content-stretch flex flex-col items-start relative shrink-0 w-full mt-[10px]">
-        <p className="font-['Inter:Regular',sans-serif] text-[14px] text-[#737373]">
+        <p className="font-['Geist:Regular',sans-serif] text-[14px] text-[#737373]">
           Chargement des dépenses...
         </p>
       </div>
@@ -76,8 +76,7 @@ export default function Expenses() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full mt-[10px]">
       <DataTable
-        title="Total"
-        description={`En 2024, l'ensemble des institutions publiques en France ont dépensé ${total2024} milliards d'euros.`}
+        title="En 2024, l'ensemble des institutions publiques en France ont dépensé 1670.2 milliards d'euros."
         data={expensesData}
       />
     </div>

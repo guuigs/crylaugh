@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import DonationModal from './DonationModal';
 import Footer from './Footer';
+import logoLong from '../../assets/logo_long.jpg';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -16,11 +17,11 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="bg-white relative min-h-screen">
       {/* Header */}
-      <div className="fixed bg-white content-stretch flex flex-col left-0 px-[120px] py-[24px] top-0 w-full z-50 border-b border-gray-100">
-        {/* Title */}
-        <h1 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[20px] text-[#0a0a0a] mb-[16px]">
-          Etat des lieux de l'argent public
-        </h1>
+      <div className="fixed bg-white content-stretch flex flex-col left-0 px-[120px] py-[24px] top-0 w-full z-50">
+        {/* Logo */}
+        <div className="mb-[16px]">
+          <img src={logoLong} alt="Logo" className="h-[40px]" />
+        </div>
         
         {/* Navigation and Donation Row */}
         <div className="flex items-center justify-between">
@@ -36,7 +37,7 @@ export default function Layout({ children }: LayoutProps) {
                   isActive('/resume') ? 'bg-[#f5f5f5]' : ''
                 }`}
               >
-                <p className={`font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap ${
+                <p className={`font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap ${
                   isActive('/resume') ? 'text-black' : 'text-[#8e8e8e]'
                 }`}>
                   Rire ou pleurer
@@ -49,7 +50,7 @@ export default function Layout({ children }: LayoutProps) {
                   isActive('/summary') ? 'bg-[#f5f5f5]' : ''
                 }`}
               >
-                <p className={`font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap ${
+                <p className={`font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap ${
                   isActive('/summary') ? 'text-black' : 'text-[#8e8e8e]'
                 }`}>
                   Synthèse
@@ -62,7 +63,7 @@ export default function Layout({ children }: LayoutProps) {
                   isActive('/expenses') ? 'bg-[#f5f5f5]' : ''
                 }`}
               >
-                <p className={`font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap ${
+                <p className={`font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap ${
                   isActive('/expenses') ? 'text-black' : 'text-[#8e8e8e]'
                 }`}>
                   Dépenses
@@ -75,7 +76,7 @@ export default function Layout({ children }: LayoutProps) {
                   isActive('/revenues') ? 'bg-[#f5f5f5]' : ''
                 }`}
               >
-                <p className={`font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap ${
+                <p className={`font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap ${
                   isActive('/revenues') ? 'text-black' : 'text-[#8e8e8e]'
                 }`}>
                   Recettes
@@ -88,7 +89,7 @@ export default function Layout({ children }: LayoutProps) {
                   isActive('/debt') ? 'bg-[#f5f5f5]' : ''
                 }`}
               >
-                <p className={`font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap ${
+                <p className={`font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap ${
                   isActive('/debt') ? 'text-black' : 'text-[#8e8e8e]'
                 }`}>
                   Dette
@@ -101,7 +102,7 @@ export default function Layout({ children }: LayoutProps) {
                   isActive('/sources') ? 'bg-[#f5f5f5]' : ''
                 }`}
               >
-                <p className={`font-['Inter:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap ${
+                <p className={`font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap ${
                   isActive('/sources') ? 'text-black' : 'text-[#8e8e8e]'
                 }`}>
                   Sources
