@@ -97,7 +97,7 @@ export default function DataTable({ title, description, data }: DataTableProps) 
       {/* Footer Notes */}
       <div className="content-stretch flex flex-col font-['Geist:Regular',sans-serif] font-normal gap-[6px] items-start leading-[normal] relative shrink-0 text-[#808080] text-[16px] w-full mb-[20px]" style={{ fontVariationSettings: "'wdth' 100" }}>
         <p className="relative shrink-0 w-full">* Sommes en milliards d'euros</p>
-        <p className="relative shrink-0 w-full">** Les blocs grisés sont des estimations non-issus de sources fiables. Je réalise ce trvail seul et peut faire des erreurs. N'hésitez pas à me faire des retours et des demandes de modifications sourcées.</p>
+        <p className="relative shrink-0 w-full">** Les blocs en rose sont des estimations non-issus de sources fiables. Je réalise ce trvail seul et peut faire des erreurs. N'hésitez pas à me faire des retours et des demandes de modifications sourcées.</p>
       </div>
 
       {/* Table */}

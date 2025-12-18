@@ -1,5 +1,5 @@
 import svgPaths from "../../imports/svg-h0p38kbi6y";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import ModificationModal from './ModificationModal';
 
 interface TableRow {
@@ -67,8 +67,8 @@ const responsibleColors: Record<string, { bg: string; text: string }> = {
 };
 
 export default function EnhancedDataTable({ title, description, data }: DataTableProps) {
-  const [sortField, setSortField] = useState<SortField | null>('responsible');
-  const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
+  const [sortField, setSortField] = useState<SortField | null>('year2024');
+  const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
   const [hoveredRow, setHoveredRow] = useState<string | null>(null);
   const [showMenu, setShowMenu] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -224,7 +224,7 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
         {/* Footer Notes */}
         <div className="content-stretch flex flex-col font-['Geist:Regular',sans-serif] font-normal gap-[4px] items-start leading-[normal] relative shrink-0 text-[#808080] text-[14px] w-full mb-[16px]" style={{ fontVariationSettings: "'wdth' 100" }}>
           <p className="relative shrink-0 w-full">* Sommes en milliards d'euros</p>
-          <p className="relative shrink-0 w-full">** Les blocs grisés sont des estimations</p>
+          <p className="relative shrink-0 w-full">** Les blocs en rose sont des estimations non issues de sources fiables. Je réalise ce travail seul et peux faire des erreurs. N'hésitez pas à me faire des retours et des demandes de modifications sourcées.</p>
         </div>
 
         {/* Selection Summary */}
@@ -335,7 +335,7 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
             <div
               key={row.id}
               className={`content-stretch flex items-center min-h-[44px] relative shrink-0 w-full border-b border-[#e5e5e5] ${
-                row.estimation ? 'bg-[#f2f2f2]' : (index % 2 === 1 ? 'bg-[#f9f9f9]' : '')
+                row.estimation ? 'bg-[#ffe5e5]' : (index % 2 === 1 ? 'bg-[#f9f9f9]' : '')
               }`}
             >
               {/* Checkbox */}

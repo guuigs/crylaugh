@@ -145,7 +145,7 @@ export default function FactCards() {
   return (
     <div className="w-full max-w-[600px] mx-auto">
       {/* Disclaimer */}
-      <div className="text-center mb-[32px]">
+      <div className="text-center mb-[50px]">
         <p className="font-['Geist:Regular',sans-serif] text-[14px] text-[#737373] italic">
           malheureusement, tout est vrai...
         </p>
@@ -172,18 +172,6 @@ export default function FactCards() {
               {currentCard.anecdote}
             </p>
           </div>
-          
-          {/* Status Badge - Like/Dislike */}
-          {showStatus && swipeDirection === 'right' && (
-            <div className="absolute top-[50px] right-[40px] rounded-[5px] px-[10px] py-[5px] border-2 border-green-600 text-green-600 uppercase text-[15px] font-medium">
-              Like!
-            </div>
-          )}
-          {showStatus && swipeDirection === 'left' && (
-            <div className="absolute top-[50px] left-[40px] rounded-[5px] px-[10px] py-[5px] border-2 border-red-600 text-red-600 uppercase text-[15px] font-medium">
-              Dislike!
-            </div>
-          )}
         </div>
       </div>
 

@@ -142,7 +142,7 @@ export default function Debt() {
   }
 
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full mt-[10px] gap-[60px]">
+    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full mt-[10px] gap-[80px]">
       {/* Tableau Dette */}
       <DataTable
         title="En 2024, la dette publique totale de la France s'élève à 3303 milliards d'euros."

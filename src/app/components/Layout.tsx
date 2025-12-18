@@ -15,20 +15,20 @@ export default function Layout({ children }: LayoutProps) {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <div className="bg-white relative min-h-screen">
+    <div className="relative min-h-screen">
       {/* Header */}
       <div className="fixed bg-white content-stretch flex flex-col left-0 px-[120px] py-[24px] top-0 w-full z-50">
         {/* Logo */}
-        <div className="mb-[16px]">
+        <div className="mb-[30px] flex justify-center">
           <img src={logoLong} alt="Logo" className="h-[40px]" />
         </div>
-        
+
         {/* Navigation and Donation Row */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center">
           {/* Navigation Row */}
           <div>
             {/* Navigation Menubar */}
-            <div className="bg-white content-stretch flex gap-[12px] items-center justify-start p-[4px] relative rounded-[8px] shrink-0 w-fit">
+            <div className="bg-white content-stretch flex gap-[12px] items-center justify-center p-[4px] relative rounded-[8px] shrink-0 w-fit">
               <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.1)]" />
               
               <Link 
@@ -114,7 +114,7 @@ export default function Layout({ children }: LayoutProps) {
       </div>
 
       {/* Main Content */}
-      <div className="pt-[140px] px-[120px] pb-[60px]">
+      <div className="pt-[150px] px-[120px] pb-[60px]">
         {/* Page Content */}
         {children}
       </div>

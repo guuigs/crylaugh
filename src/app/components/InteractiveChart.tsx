@@ -96,7 +96,7 @@ const fallbackData50Years: DataPoint[] = [
 type TimeRange = '3' | '10' | '50';
 
 export default function InteractiveChart() {
-  const [timeRange, setTimeRange] = useState<TimeRange>('3');
+  const [timeRange, setTimeRange] = useState<TimeRange>('50');
   const [data3Years, setData3Years] = useState<DataPoint[]>([]);
   const [data10Years, setData10Years] = useState<DataPoint[]>([]);
   const [data50Years, setData50Years] = useState<DataPoint[]>([]);
@@ -193,7 +193,7 @@ export default function InteractiveChart() {
   }
 
   return (
-    <div className="bg-white content-stretch flex flex-col gap-[24px] items-start px-0 py-[24px] relative rounded-[14px] shrink-0 w-full max-w-[1196px]">
+    <div className="bg-white content-stretch flex flex-col gap-[24px] items-start px-0 py-[24px] relative rounded-[14px] shrink-0 w-full max-w-[1196px] mt-[40px]">
       <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[14px] shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1)]" />
 
       {/* Title and Time Range Selector */}
@@ -202,12 +202,12 @@ export default function InteractiveChart() {
           <div className="content-stretch flex gap-[6px] items-center px-[24px] py-0 relative w-full">
             <div className="basis-0 content-stretch flex flex-col gap-[6px] grow items-start min-h-px min-w-px relative shrink-0">
               <div className="content-stretch flex font-['Geist:Semi_Bold',sans-serif] font-semibold gap-[4px] items-center justify-center leading-[24px] not-italic relative shrink-0 text-[#0a0a0a] text-[16px] text-nowrap">
-                <p className="relative shrink-0">{latestData.dette}</p>
+                <p className="relative shrink-0">3303</p>
                 <p className="relative shrink-0">milliards d'euros</p>
               </div>
               <div className="content-stretch flex items-center justify-center relative shrink-0">
                 <div className="flex flex-col font-['Geist:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#737373] text-[14px] text-nowrap">
-                  <p className="leading-[20px]">Ensemble de la dette française en 2024</p>
+                  <p className="leading-[20px]">Estimation de la dette française en 2024</p>
                 </div>
               </div>
             </div>

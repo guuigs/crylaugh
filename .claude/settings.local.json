@@ -8,7 +8,9 @@
       "Bash(node test-supabase-simple.js:*)",
       "Bash(node check-rls.js:*)",
       "Bash(ls:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(npm run build:*)",
+      "Bash(rm:*)"
     ]
   }
 }
