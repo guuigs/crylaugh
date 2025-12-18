@@ -205,15 +205,15 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
     <>
       <div className="w-full max-w-[1200px]">
         {/* Summary Card */}
-        <div className="content-stretch flex items-center p-[16px] relative rounded-[8px] shrink-0 w-full mb-[16px]">
+        <div className="content-stretch flex items-center p-[12px] md:p-[16px] relative rounded-[8px] shrink-0 w-full mb-[12px] md:mb-[16px]">
           <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px]" />
-          <div className="basis-0 content-stretch flex flex-col gap-[6px] grow items-start min-h-px min-w-px relative shrink-0">
-            <p className="font-['Geist:Medium',sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] text-nowrap">
+          <div className="basis-0 content-stretch flex flex-col gap-[4px] md:gap-[6px] grow items-start min-h-px min-w-px relative shrink-0">
+            <p className="font-['Geist:Medium',sans-serif] font-medium leading-[18px] md:leading-[20px] not-italic relative shrink-0 text-[#0a0a0a] text-[13px] md:text-[14px]">
               {title}
             </p>
             {description && (
               <div className="content-stretch flex items-center justify-center relative shrink-0 w-full">
-                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[20px] not-italic relative shrink-0 text-[14px] text-black w-full">
+                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[18px] md:leading-[20px] not-italic relative shrink-0 text-[13px] md:text-[14px] text-black w-full">
                   {description}
                 </p>
               </div>
@@ -222,7 +222,7 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
         </div>
 
         {/* Footer Notes */}
-        <div className="content-stretch flex flex-col font-['Geist:Regular',sans-serif] font-normal gap-[4px] items-start leading-[normal] relative shrink-0 text-[#808080] text-[14px] w-full mb-[16px]" style={{ fontVariationSettings: "'wdth' 100" }}>
+        <div className="content-stretch flex flex-col font-['Geist:Regular',sans-serif] font-normal gap-[3px] md:gap-[4px] items-start leading-[normal] relative shrink-0 text-[#808080] text-[12px] md:text-[14px] w-full mb-[12px] md:mb-[16px]" style={{ fontVariationSettings: "'wdth' 100" }}>
           <p className="relative shrink-0 w-full">* Sommes en milliards d'euros</p>
           <p className="relative shrink-0 w-full">** Les blocs en rose sont des estimations non issues de sources fiables. Je réalise ce travail seul et peux faire des erreurs. N'hésitez pas à me faire des retours et des demandes de modifications sourcées.</p>
         </div>
@@ -239,12 +239,13 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
           </div>
         )}
 
-        {/* Table */}
-        <div className="bg-white content-stretch flex flex-col items-start relative rounded-[8px] shrink-0 w-full overflow-hidden">
-          <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px]" />
-          
-          {/* Header */}
-          <div className="content-stretch flex items-start relative shrink-0 w-full border-b border-[#e5e5e5]">
+        {/* Table - Scroll horizontal sur mobile */}
+        <div className="w-full overflow-x-auto">
+          <div className="bg-white content-stretch flex flex-col items-start relative rounded-[8px] shrink-0 min-w-[1000px] md:min-w-full md:w-full overflow-hidden">
+            <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px]" />
+
+            {/* Header */}
+            <div className="content-stretch flex items-start relative shrink-0 w-full border-b border-[#e5e5e5]">
             <div className="content-stretch flex h-[36px] items-center justify-center relative shrink-0 w-[40px]">
               <input
                 type="checkbox"
@@ -254,8 +255,32 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
               />
             </div>
             <div className="h-[36px] shrink-0 w-[32px]" />
-            
-            <div 
+
+            <div
+              onClick={() => handleSort('year2024')}
+              className="content-stretch flex flex-col h-[36px] items-start justify-center px-[6px] py-0 relative shrink-0 w-[120px] cursor-pointer hover:bg-[#f9f9f9]"
+            >
+              <div className="content-stretch flex gap-[6px] items-center justify-start relative shrink-0">
+                <p className="font-['Geist:Medium',sans-serif] font-medium leading-[18px] not-italic relative shrink-0 text-[#0a0a0a] text-[13px] text-nowrap">
+                  2024
+                </p>
+                <Arrow isActive={sortField === 'year2024'} />
+              </div>
+            </div>
+
+            <div
+              onClick={() => handleSort('year2023')}
+              className="content-stretch flex flex-col h-[36px] items-start justify-center px-[6px] py-0 relative shrink-0 w-[120px] cursor-pointer hover:bg-[#f9f9f9]"
+            >
+              <div className="content-stretch flex gap-[6px] items-center justify-start relative shrink-0">
+                <p className="font-['Geist:Medium',sans-serif] font-medium leading-[18px] not-italic relative shrink-0 text-[#0a0a0a] text-[13px] text-nowrap">
+                  2023
+                </p>
+                <Arrow isActive={sortField === 'year2023'} />
+              </div>
+            </div>
+
+            <div
               onClick={() => handleSort('name')}
               className="content-stretch flex flex-col h-[36px] items-start justify-center px-[6px] py-0 relative shrink-0 w-[220px] cursor-pointer hover:bg-[#f9f9f9]"
             >
@@ -266,8 +291,8 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
                 <Arrow isActive={sortField === 'name'} />
               </div>
             </div>
-            
-            <div 
+
+            <div
               onClick={() => handleSort('sector')}
               className="content-stretch flex flex-col h-[36px] items-start justify-center px-[6px] py-0 relative shrink-0 w-[180px] cursor-pointer hover:bg-[#f9f9f9]"
             >
@@ -278,7 +303,7 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
                 <Arrow isActive={sortField === 'sector'} />
               </div>
             </div>
-            
+
             <div
               onClick={() => handleSort('responsible')}
               className="content-stretch flex flex-col h-[36px] items-start justify-center px-[6px] py-0 relative shrink-0 w-[180px] cursor-pointer hover:bg-[#f9f9f9]"
@@ -290,32 +315,8 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
                 <Arrow isActive={sortField === 'responsible'} />
               </div>
             </div>
-            
-            <div 
-              onClick={() => handleSort('year2023')}
-              className="content-stretch flex flex-col h-[36px] items-start justify-center px-[6px] py-0 relative shrink-0 w-[120px] cursor-pointer hover:bg-[#f9f9f9]"
-            >
-              <div className="content-stretch flex gap-[6px] items-center justify-start relative shrink-0">
-                <p className="font-['Geist:Medium',sans-serif] font-medium leading-[18px] not-italic relative shrink-0 text-[#0a0a0a] text-[13px] text-nowrap">
-                  2023
-                </p>
-                <Arrow isActive={sortField === 'year2023'} />
-              </div>
-            </div>
-            
-            <div 
-              onClick={() => handleSort('year2024')}
-              className="content-stretch flex flex-col h-[36px] items-start justify-center px-[6px] py-0 relative shrink-0 w-[120px] cursor-pointer hover:bg-[#f9f9f9]"
-            >
-              <div className="content-stretch flex gap-[6px] items-center justify-start relative shrink-0">
-                <p className="font-['Geist:Medium',sans-serif] font-medium leading-[18px] not-italic relative shrink-0 text-[#0a0a0a] text-[13px] text-nowrap">
-                  2024
-                </p>
-                <Arrow isActive={sortField === 'year2024'} />
-              </div>
-            </div>
-            
-            <div 
+
+            <div
               onClick={() => handleSort('variation')}
               className="content-stretch flex flex-col h-[36px] items-start justify-center px-[6px] py-0 relative shrink-0 w-[100px] cursor-pointer hover:bg-[#f9f9f9]"
             >
@@ -326,8 +327,8 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
                 <Arrow isActive={sortField === 'variation'} />
               </div>
             </div>
-            
-            <div className="basis-0 grow h-[36px] min-h-px min-w-px relative shrink-0" />
+
+            <div className="basis-0 grow h-[36px] min-h-px min-w-[80px] relative shrink-0" />
           </div>
 
           {/* Rows */}
@@ -370,22 +371,34 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
                 <div className="h-[44px] shrink-0 w-[32px]" />
               )}
 
+              <div className="content-stretch flex flex-col h-[44px] items-start justify-center px-[6px] py-[6px] relative shrink-0 w-[120px]">
+                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[18px] not-italic text-[#0a0a0a] text-[13px] text-nowrap">
+                  {row.year2024}
+                </p>
+              </div>
+
+              <div className="content-stretch flex flex-col h-[44px] items-start justify-center px-[6px] py-[6px] relative shrink-0 w-[120px]">
+                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[18px] not-italic text-[#0a0a0a] text-[13px] text-nowrap">
+                  {row.year2023}
+                </p>
+              </div>
+
               <div className="content-stretch flex flex-col items-start justify-center min-h-[44px] px-[6px] py-[6px] relative shrink-0 w-[220px]">
                 <p className="font-['Geist:Regular',sans-serif] font-normal leading-[18px] not-italic text-[#0a0a0a] text-[13px]">
                   {row.name}
                 </p>
               </div>
-              
+
               <div className="content-stretch flex flex-col h-[44px] items-start justify-center px-[6px] py-[6px] relative shrink-0 w-[180px]">
-                <div 
+                <div
                   className="content-stretch flex items-center justify-center px-[6px] py-[2px] relative rounded-[4px] shrink-0"
-                  style={{ 
+                  style={{
                     backgroundColor: sectorColors[row.sector]?.bg || '#ede7c0',
                   }}
                 >
-                  <p 
+                  <p
                     className="font-['Geist:Regular',sans-serif] font-normal leading-[18px] not-italic relative shrink-0 text-[13px] text-nowrap"
-                    style={{ 
+                    style={{
                       color: sectorColors[row.sector]?.text || '#555033'
                     }}
                   >
@@ -393,7 +406,7 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
                   </p>
                 </div>
               </div>
-              
+
               <div className="content-stretch flex flex-wrap gap-[4px] min-h-[44px] items-center px-[6px] py-[6px] relative shrink-0 w-[180px]">
                 {Array.isArray(row.responsible) ? (
                   row.responsible.map((resp, idx) => (
@@ -432,19 +445,9 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
                   </div>
                 )}
               </div>
-              
-              <div className="content-stretch flex flex-col h-[44px] items-start justify-center px-[6px] py-[6px] relative shrink-0 w-[120px]">
-                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[18px] not-italic text-[#0a0a0a] text-[13px] text-nowrap">
-                  {row.year2023}
-                </p>
-              </div>
-              
-              <div className="content-stretch flex flex-col h-[44px] items-start justify-center px-[6px] py-[6px] relative shrink-0 w-[120px]">
-                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[18px] not-italic text-[#0a0a0a] text-[13px] text-nowrap">
-                  {row.year2024}
-                </p>
-              </div>
-              
+
+
+
               <div className="content-stretch flex flex-col h-[44px] items-start justify-center px-[6px] py-[6px] relative shrink-0 w-[100px]">
                 <p className={`font-['Geist:Regular',sans-serif] font-normal leading-[18px] not-italic text-[13px] text-nowrap ${
                   row.variation > 0 ? 'text-[#e24430]' : row.variation < 0 ? 'text-[#666dea]' : 'text-[#0a0a0a]'
@@ -452,8 +455,8 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
                   {row.variation > 0 ? '+' : ''}{row.variation}
                 </p>
               </div>
-              
-              <div className="basis-0 grow h-[44px] min-h-px min-w-px relative shrink-0 flex items-center justify-end pr-[8px]">
+
+              <div className="basis-0 grow h-[44px] min-h-px min-w-[80px] relative shrink-0 flex items-center justify-end pr-[8px]">
                 <div className="relative" data-menu-container>
                   <button
                     onClick={(e) => {
@@ -485,6 +488,7 @@ export default function EnhancedDataTable({ title, description, data }: DataTabl
               </div>
             </div>
           ))}
+          </div>
         </div>
       </div>
 

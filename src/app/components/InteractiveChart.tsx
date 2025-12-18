@@ -193,26 +193,27 @@ export default function InteractiveChart() {
   }
 
   return (
-    <div className="bg-white content-stretch flex flex-col gap-[24px] items-start px-0 py-[24px] relative rounded-[14px] shrink-0 w-full max-w-[1196px] mt-[40px]">
+    <div className="bg-white content-stretch flex flex-col gap-[16px] md:gap-[24px] items-start px-0 py-[16px] md:py-[24px] relative rounded-[14px] shrink-0 w-full max-w-[1196px] mt-[20px] md:mt-[40px]">
       <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[14px] shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1)]" />
 
       {/* Title and Time Range Selector */}
       <div className="relative shrink-0 w-full">
-        <div className="flex flex-row items-center size-full">
-          <div className="content-stretch flex gap-[6px] items-center px-[24px] py-0 relative w-full">
-            <div className="basis-0 content-stretch flex flex-col gap-[6px] grow items-start min-h-px min-w-px relative shrink-0">
-              <div className="content-stretch flex font-['Geist:Semi_Bold',sans-serif] font-semibold gap-[4px] items-center justify-center leading-[24px] not-italic relative shrink-0 text-[#0a0a0a] text-[16px] text-nowrap">
+        <div className="flex flex-col md:flex-row items-start md:items-center size-full gap-[12px] md:gap-0">
+          <div className="content-stretch flex gap-[6px] items-center px-[16px] md:px-[24px] py-0 relative w-full">
+            <div className="basis-0 content-stretch flex flex-col gap-[4px] md:gap-[6px] grow items-start min-h-px min-w-px relative shrink-0">
+              <div className="content-stretch flex font-['Geist:Semi_Bold',sans-serif] font-semibold gap-[4px] items-center justify-center leading-[20px] md:leading-[24px] not-italic relative shrink-0 text-[#0a0a0a] text-[14px] md:text-[16px] flex-wrap">
                 <p className="relative shrink-0">3303</p>
                 <p className="relative shrink-0">milliards d'euros</p>
               </div>
               <div className="content-stretch flex items-center justify-center relative shrink-0">
-                <div className="flex flex-col font-['Geist:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#737373] text-[14px] text-nowrap">
-                  <p className="leading-[20px]">Estimation de la dette française en 2024</p>
+                <div className="flex flex-col font-['Geist:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#737373] text-[12px] md:text-[14px]">
+                  <p className="leading-[18px] md:leading-[20px]">Estimation de la dette française en 2024</p>
                 </div>
               </div>
             </div>
-            
-            <div className="content-stretch flex items-center relative shrink-0">
+          </div>
+
+            <div className="content-stretch flex items-center relative shrink-0 px-[16px] md:px-0">
               <div 
                 onClick={() => setTimeRange('3')}
                 className={`content-stretch flex flex-col h-[36px] items-center justify-center px-[16px] py-0 relative rounded-bl-[8px] rounded-tl-[8px] shrink-0 cursor-pointer ${
@@ -255,15 +256,14 @@ export default function InteractiveChart() {
                 </p>
               </div>
             </div>
-          </div>
         </div>
       </div>
 
       {/* Chart */}
       <div className="relative shrink-0 w-full">
         <div className="flex flex-col items-center justify-center size-full">
-          <div className="content-stretch flex flex-col items-center justify-center pb-0 pt-[24px] px-[24px] relative w-full">
-            <div className="h-[250px] w-full">
+          <div className="content-stretch flex flex-col items-center justify-center pb-0 pt-[16px] md:pt-[24px] px-[16px] md:px-[24px] relative w-full">
+            <div className="h-[200px] md:h-[250px] w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={currentData} margin={{ top: 10, right: 5, left: 5, bottom: 0 }}>
                   <defs>
@@ -340,29 +340,29 @@ export default function InteractiveChart() {
       {/* Legend */}
       <div className="relative shrink-0 w-full">
         <div className="flex flex-row items-center size-full">
-          <div className="content-stretch flex items-center px-[24px] py-0 relative w-full">
-            <div className="basis-0 content-stretch flex flex-col grow items-start min-h-px min-w-px relative shrink-0">
-              <div className="content-stretch flex gap-[10px] items-center justify-center relative shrink-0 mb-2">
-                <div className="bg-[#ea9218] rounded-[4px] shrink-0 size-[16px]" />
-                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[24px] relative shrink-0 text-[#0a0a0a] text-[16px] text-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <div className="content-stretch flex items-center px-[16px] md:px-[24px] py-0 relative w-full">
+            <div className="basis-0 content-stretch flex flex-col md:flex-row md:flex-wrap grow items-start gap-x-[24px] min-h-px min-w-px relative shrink-0">
+              <div className="content-stretch flex gap-[8px] md:gap-[10px] items-center justify-center relative shrink-0 mb-2">
+                <div className="bg-[#ea9218] rounded-[4px] shrink-0 size-[12px] md:size-[16px]" />
+                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[20px] md:leading-[24px] relative shrink-0 text-[#0a0a0a] text-[13px] md:text-[16px] text-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
                   Dette de l'état
                 </p>
               </div>
-              <div className="content-stretch flex gap-[10px] items-center justify-center relative shrink-0 mb-2">
-                <div className="bg-[#e24430] rounded-[4px] shrink-0 size-[16px]" />
-                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[24px] relative shrink-0 text-[#0a0a0a] text-[16px] text-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
+              <div className="content-stretch flex gap-[8px] md:gap-[10px] items-center justify-center relative shrink-0 mb-2">
+                <div className="bg-[#e24430] rounded-[4px] shrink-0 size-[12px] md:size-[16px]" />
+                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[20px] md:leading-[24px] relative shrink-0 text-[#0a0a0a] text-[13px] md:text-[16px] text-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
                   Dépenses publics
                 </p>
               </div>
-              <div className="content-stretch flex gap-[10px] items-center justify-center relative shrink-0 mb-2">
-                <div className="bg-[#666dea] rounded-[4px] shrink-0 size-[16px]" />
-                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[24px] relative shrink-0 text-[#0a0a0a] text-[16px] text-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
+              <div className="content-stretch flex gap-[8px] md:gap-[10px] items-center justify-center relative shrink-0 mb-2">
+                <div className="bg-[#666dea] rounded-[4px] shrink-0 size-[12px] md:size-[16px]" />
+                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[20px] md:leading-[24px] relative shrink-0 text-[#0a0a0a] text-[13px] md:text-[16px] text-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
                   Recettes publiques
                 </p>
               </div>
-              <div className="content-stretch flex gap-[10px] items-center justify-center relative shrink-0">
-                <div className="bg-[#ff1cce] rounded-[4px] shrink-0 size-[16px]" />
-                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[24px] relative shrink-0 text-[#0a0a0a] text-[16px] text-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
+              <div className="content-stretch flex gap-[8px] md:gap-[10px] items-center justify-center relative shrink-0 mb-2">
+                <div className="bg-[#ff1cce] rounded-[4px] shrink-0 size-[12px] md:size-[16px]" />
+                <p className="font-['Geist:Regular',sans-serif] font-normal leading-[20px] md:leading-[24px] relative shrink-0 text-[#0a0a0a] text-[13px] md:text-[16px] text-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
                   PIB
                 </p>
               </div>

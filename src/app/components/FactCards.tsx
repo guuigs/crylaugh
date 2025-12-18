@@ -99,7 +99,7 @@ export default function FactCards() {
   if (loading) {
     return (
       <div className="w-full max-w-[600px] mx-auto text-center">
-        <p className="font-['Geist:Regular',sans-serif] text-[14px] text-[#737373]">
+        <p className="font-['Geist:Regular',sans-serif] text-[12px] md:text-[14px] text-[#737373]">
           Chargement des anecdotes...
         </p>
       </div>
@@ -112,17 +112,20 @@ export default function FactCards() {
   
   // Animation styles pour la carte actuelle
   const getCardStyle = () => {
+    // Adapter la distance de swipe en fonction de la taille de l'écran
+    const swipeDistance = window.innerWidth < 768 ? '300px' : '400px';
+
     if (swipeDirection === 'left') {
       return {
         transform: 'rotate(-30deg) scale(0.8)',
-        marginLeft: '-400px',
+        marginLeft: `-${swipeDistance}`,
         opacity: 0,
         transition: 'all 0.3s',
       };
     } else if (swipeDirection === 'right') {
       return {
         transform: 'rotate(30deg) scale(0.8)',
-        marginLeft: '400px',
+        marginLeft: swipeDistance,
         opacity: 0,
         transition: 'all 0.3s',
       };
@@ -143,41 +146,43 @@ export default function FactCards() {
   const showStatus = swipeDirection && !isDragging;
 
   return (
-    <div className="w-full max-w-[600px] mx-auto">
-      {/* Disclaimer */}
-      <div className="text-center mb-[50px]">
-        <p className="font-['Geist:Regular',sans-serif] text-[14px] text-[#737373] italic">
+    <div className="w-full mx-auto">
+      {/* Card - Positionnée de manière absolue et centrée à l'écran */}
+      <div
+        className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-[10px] shadow-[0px_0px_10px_rgba(0,0,0,0.2)] cursor-grab active:cursor-grabbing select-none flex items-center justify-center p-[24px] md:p-[40px]"
+        style={{
+          width: 'min(90vw, calc(60vh * 0.6667))',
+          height: 'min(calc(90vw * 1.5), 60vh)',
+          ...getCardStyle(),
+        }}
+        onMouseDown={handleDragStart}
+        onMouseMove={handleDragMove}
+        onMouseUp={handleDragEnd}
+        onMouseLeave={handleDragEnd}
+        onTouchStart={handleDragStart}
+        onTouchMove={handleDragMove}
+        onTouchEnd={handleDragEnd}
+      >
+        <div className="text-center">
+          <p className="font-['Geist:Medium',sans-serif] font-medium text-[16px] leading-[26px] md:text-[22px] md:leading-[36px] text-[#0a0a0a]">
+            {currentCard.anecdote}
+          </p>
+        </div>
+      </div>
+
+      {/* Disclaimer - Au-dessus de la carte */}
+      <div className="text-center mb-[30px] md:mb-[50px]">
+        <p className="font-['Geist:Regular',sans-serif] text-[12px] md:text-[14px] text-[#737373] italic">
           malheureusement, tout est vrai...
         </p>
       </div>
 
-      {/* Card Stack Container */}
-      <div className="relative h-[500px] flex items-center justify-center">
-        {/* Current Card - celle qu'on swipe */}
-        <div
-          className="absolute inset-x-0 mx-auto w-full max-w-[400px] h-[400px] bg-white rounded-[10px] shadow-[0px_0px_10px_rgba(0,0,0,0.2)] cursor-grab active:cursor-grabbing select-none flex items-center justify-center p-[40px]"
-          style={{
-            ...getCardStyle(),
-          }}
-          onMouseDown={handleDragStart}
-          onMouseMove={handleDragMove}
-          onMouseUp={handleDragEnd}
-          onMouseLeave={handleDragEnd}
-          onTouchStart={handleDragStart}
-          onTouchMove={handleDragMove}
-          onTouchEnd={handleDragEnd}
-        >
-          <div className="text-center">
-            <p className="font-['Geist:Medium',sans-serif] font-medium text-[22px] leading-[36px] text-[#0a0a0a]">
-              {currentCard.anecdote}
-            </p>
-          </div>
-        </div>
-      </div>
+      {/* Espaceur pour la hauteur de la carte */}
+      <div style={{ height: 'min(calc(90vw * 1.5), 60vh)' }} />
 
-      {/* Subtle hint */}
-      <div className="text-center mt-[32px]">
-        <p className="font-['Geist:Regular',sans-serif] text-[12px] text-[#a3a3a3]">
+      {/* Subtle hint - En dessous de la carte */}
+      <div className="text-center mt-[20px] md:mt-[32px]">
+        <p className="font-['Geist:Regular',sans-serif] text-[11px] md:text-[12px] text-[#a3a3a3]">
           Glissez la carte à gauche ou à droite
         </p>
       </div>

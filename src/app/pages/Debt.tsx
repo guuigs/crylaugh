@@ -133,8 +133,8 @@ export default function Debt() {
 
   if (loading) {
     return (
-      <div className="content-stretch flex flex-col items-start relative shrink-0 w-full mt-[10px]">
-        <p className="font-['Geist:Regular',sans-serif] text-[14px] text-[#737373]">
+      <div className="content-stretch flex flex-col items-start relative shrink-0 w-full mt-[8px] md:mt-[10px]">
+        <p className="font-['Geist:Regular',sans-serif] text-[12px] md:text-[14px] text-[#737373]">
           Chargement des données...
         </p>
       </div>
@@ -142,7 +142,7 @@ export default function Debt() {
   }
 
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full mt-[10px] gap-[80px]">
+    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full mt-[8px] md:mt-[10px] gap-[50px] md:gap-[80px]">
       {/* Tableau Dette */}
       <DataTable
         title="En 2024, la dette publique totale de la France s'élève à 3303 milliards d'euros."
